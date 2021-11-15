@@ -4,71 +4,110 @@ let choices = ['Rock','Paper','Scissors']
 //play the round
 let playerScore = 0;
 let computerScore = 0;
-game();
 //Create function ComputerPlay that generates random choice
-function ComputerPlay(){
+function computerPlay(){
     let computerChoice= choices[Math.floor(Math.random()*3)];
     return computerChoice;  
 }
+
 //Create function playRound that returns winner
 function playRound(playerSelection,computerSelection){
 //use cases to determine winner 
     if (playerSelection.toLowerCase() === 'rock') {
         if (computerSelection === 'Rock'){
-            console.log("No Winner! Both used Rock!");
+            gameText.textContent = "No  Winner!  Both  used  Rock!";
+            checkScore(playerScore,computerScore);
             return;
         } else if (computerSelection === 'Paper') {
-            console.log("You Lose! Paper beats Rock!");
+            gameText.textContent = "You  Lose!  Paper  beats  Rock!";
             computerScore++;
-            return computerScore;
+            cScore.textContent = computerScore;
+            checkScore(playerScore,computerScore);
         } else {
-           console.log("You Win! Rock beats Scissors!");
+            gameText.textContent = "You  Win!  Rock  beats  Scissors!";
            playerScore++;
-           return playerScore;
+           pScore.textContent = playerScore;
+           checkScore(playerScore,computerScore);
         }
     } else if (playerSelection.toLowerCase()==='scissors') {
         if (computerSelection === 'Rock') {
-            console.log("You Lose! Rock beats Scissors!")
+            gameText.textContent = "You  Lose!  Rock beats Scissors!"
             computerScore++;
-            return computerScore;
+            cScore.textContent = computerScore;
+            checkScore(playerScore,computerScore);
         } else if (computerSelection === 'Paper') {
-            console.log("You Win! Scissors beats Paper!")
+            gameText.textContent = "You  Win!  Scissors  beats  Paper!"
             playerScore++;
-            return playerScore;
+            pScore.textContent = playerScore;
+            checkScore(playerScore,computerScore);
         } else {
-            console.log("No Winner! Both used Scissors!")
-            return;
+            gameText.textContent = "No  Winner!  Both  used  Scissors!"
+            checkScore(playerScore,computerScore);
         }
         }  else if (playerSelection.toLowerCase()==='paper') {
             if (computerSelection === 'Rock') {
-                console.log("You Win! Paper beats Rock!");_
+                gameText.textContent = "You  Win!  Paper  beats  Rock!";
                 playerScore++;
-                return playerScore;
+                pScore.textContent = playerScore;
+                checkScore(playerScore,computerScore);
             } else if (computerSelection === 'Paper') {
-                console.log("No Winner! Both used Paper")
-                return;
+                gameText.textContent = "No  Winner!  Both  used  Paper"
+                checkScore(playerScore,computerScore);
             } else {
-                console.log("You Lose! Scissors beats Paper!");
+                gameText.textContent = "You  Lose!  Scissors  beats  Paper!";
                 computerScore++;
-                return computerScore;
+                cScore.textContent = computerScore;
+                checkScore(playerScore,computerScore);
             }
         } else {
             return "Invalid Input! Please choose from Rock, Paper, or Scissors!"
         }
     }
 
-    //write a function "Game" that loops 5 rounds of playRound and keeps score, then prints the winner.
-    function game() {
-        //playRound 5 times
-        for (let i = 0; i < 5; i++) {
-            //get input from the player
-        let playerSelection = prompt("What will you choose?");
-        let computerSelection = ComputerPlay();
-        playRound(playerSelection,computerSelection); 
+    function playrock(){
+        let computerSelection = computerPlay();
+        playRound('rock',computerSelection);
+    }
+
+    function playScissors(){
+        let computerSelection = computerPlay();
+        playRound('scissors',computerSelection);
+    }
+
+    function playPaper(){
+        let computerSelection = computerPlay();
+        playRound('paper',computerSelection);
+    }
+
+
+    const rock = document.querySelector("#rock");
+    rock.addEventListener('click',playrock);
+    const paper = document.querySelector("#paper");
+    paper.addEventListener('click',playPaper);
+    const scissors = document.querySelector("#scissors");
+    scissors.addEventListener('click',playScissors);
+
+    const gameText = document.querySelector('.gameText');
+
+    const pScore = document.querySelector('.playerScore');
+    pScore.textContent = playerScore;
+    const cScore = document.querySelector('.computerScore')
+    cScore.textContent = computerScore;
+
+    function checkScore(playerScore,computerScore) {
+        if (playerScore === 5) {
+            gameText.textContent= "PLAYER  WINS !!!!!!! CONGRATULATIONS  TO  OUR  CHAMPION";
+            playerScore = 0;
+            computerScore =0;
+            pScore.textContent = playerScore;
+            cScore.textContent = computerScore;
         }
-        if (playerScore>computerScore) {
-            console.log("Congratulations! You are the champion!");
-        } else if (computerScore > playerScore) {
-            console.log("Too Bad! CPU is the champion!");
-        } else console.log("It's a tie! Try again!");
+        else if (computerScore === 5) {
+            gameText.textcontent= "COMPUTER  WINS !!!!!!! CONGRATULATIONS  TO  OUR  CHAMPION";
+            playerScore = 0;
+            computerScore = 0;
+            pScore.textContent = playerScore;
+            cScore.textContent = computerScore;
+        }
+        else return;
     }

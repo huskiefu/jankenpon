@@ -2,10 +2,46 @@
 <html>
     <head>
         <meta charset = "utf-8">
+        <script src="myscripts.js" defer></script>
+        <link rel = "stylesheet" href= "style.css">
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+				<link href="http://fonts.cdnfonts.com/css/arcade-classic" rel="stylesheet">
         <title>Rock Paper Scissors</title>
     </head>
 
     <body>
-        <script src="myscripts.js"></script>
+			<style> @import url('http://fonts.cdnfonts.com/css/arcade-classic'); </style>
+			<table>
+				<tr>
+					<th class = "playerName">Player</th>
+					<th class = "computerName">Computer</th>
+				</tr>
+				<tr>
+					<td class = "playerScore"></td>
+					<td class = "computerScore"></td>
+				</tr>
+			</table>
+
+			<div class = "gameText"></div>
+
+			<div class= button-panel>
+			<button type = "button" class = "button" id = "rock">
+				<span class = "button-text"> Rock</span>
+				<span class = "logo"><img src="https://img.icons8.com/windows/50/000000/clenched-fist.png"/> 
+				</span>
+			</button>
+
+      <button type="button" class ="button" id = "scissors">
+        <span class= "button-text"> Scissors </span>
+        <span class = "logo"> <img src="https://img.icons8.com/ios/50/000000/hand-scissors--v1.png"/>
+				</span>
+      </button>
+
+			<button type="button" class ="button" id = "paper">
+        <span class= "button-text"> Paper </span>
+        <span class = "logo"> <img src="https://img.icons8.com/ios/50/000000/hand.png"/>
+				</span>
+      </button>
+		</div>
     </body>
 </html>
